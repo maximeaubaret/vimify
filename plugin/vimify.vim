@@ -111,7 +111,7 @@ endfunction
 function! s:SearchTrack(query)
 python << endpython
 import vim
-url = "https://api.spotify.com/v1/search?q={}&type=track".format(vim.eval("a:query"))
+url = "https://api.spotify.com/v1/search?q={}&type=track".format(vim.eval("a:query").replace(" ", "+"))
 headers = {}
 req = urllib2.Request(url,)
 req.add_header('Authorization', "Bearer {}".format(vim.eval("g:spotify_token")))
